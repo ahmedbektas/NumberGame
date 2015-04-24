@@ -2,12 +2,13 @@
     <string name="app_name">Number Game</string>
 
     <string name="action_settings">Settings</string>
-    <array name="number_limit">
+    <string-array name="number_limit">
         <item>10</item>
         <item>20</item>
         <item>100</item>
         <item>1000</item>
-    </array>
+    </string-array>
     <string name="title_activity_play">Answer the question</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="question_title">Answer the question:</string>
+
 </resources>
