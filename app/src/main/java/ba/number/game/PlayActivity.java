@@ -16,7 +16,8 @@ import android.os.Build;
 public class PlayActivity extends ActionBarActivity {
 
     Bundle bundle;
-    public static int questionCounter = 0, trueCounter=0;
+    public static int questionCounter = 0;
+    private int trueCounter=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,17 @@ public class PlayActivity extends ActionBarActivity {
         if (savedInstanceState == null) {
             ubaciFragment();
         }
+    }
+
+    public int getTrueCounter() {
+        return trueCounter;
+    }
+
+    public void setTrueCounter(int trueCounter) {
+        this.trueCounter = trueCounter;
+    }
+    public void increaseTrueCounter (){
+        this.trueCounter++;
     }
 
     public void ubaciFragment(){

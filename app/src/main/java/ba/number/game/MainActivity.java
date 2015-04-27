@@ -36,7 +36,6 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Log.i("MainActivity", "play");
                 PlayActivity.questionCounter=0;
-                PlayActivity.trueCounter=0;
 
                 Intent intent = new Intent(MainActivity.this, PlayActivity.class);
                 ArrayList<Integer> listaFunkcija = new ArrayList<>();

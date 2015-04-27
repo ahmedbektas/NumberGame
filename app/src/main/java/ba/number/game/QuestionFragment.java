@@ -62,7 +62,7 @@ public class QuestionFragment extends Fragment {
         });
 
         mActivity.getSupportActionBar().setTitle("Answer question " + PlayActivity.questionCounter);
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (PlayActivity.trueCounter*10));
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((PlayActivity) mActivity).getTrueCounter()*10));
 
         questionTxt = (TextView)rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText)rootView.findViewById(R.id.answerEt);
@@ -113,7 +113,7 @@ public class QuestionFragment extends Fragment {
                         String answer = answerEt.getText().toString();
                         if (x+y==Integer.valueOf(answer)){
                             Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
-                            PlayActivity.trueCounter++;
+                            ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
                             Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
                         }
@@ -122,7 +122,7 @@ public class QuestionFragment extends Fragment {
                         String answer2 = answerEt.getText().toString();
                         if (x-y==Integer.valueOf(answer2)){
                             Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
-                            PlayActivity.trueCounter++;
+                            ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
                             Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
                         }
@@ -131,7 +131,7 @@ public class QuestionFragment extends Fragment {
                         String answer3 = answerEt.getText().toString();
                         if (x*y==Integer.valueOf(answer3)){
                             Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
-                            PlayActivity.trueCounter++;
+                            ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
                             Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
                         }
@@ -139,7 +139,7 @@ public class QuestionFragment extends Fragment {
                         String answer4 = answerEt.getText().toString();
                         if (x/y==Integer.valueOf(answer4)){
                             Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
-                            PlayActivity.trueCounter++;
+                            ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
                             Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
                         }
@@ -151,13 +151,13 @@ public class QuestionFragment extends Fragment {
                 }else{
                     Log.i("QuestionFragment", "show score");
                     AlertDialog.Builder scoreDialog = new AlertDialog.Builder(getActivity());
-                    scoreDialog.setTitle("Score: " + (PlayActivity.trueCounter)*10);
-                    scoreDialog.setMessage("True answers: " + PlayActivity.trueCounter + "\nFalse answers: " + (10-(PlayActivity.trueCounter)));
+                    scoreDialog.setTitle("Score: " + ((PlayActivity) mActivity).getTrueCounter()*10);
+                    scoreDialog.setMessage("True answers: " + ((PlayActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((PlayActivity) mActivity).getTrueCounter()));
                     scoreDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             PlayActivity.questionCounter=0;
-                            PlayActivity.trueCounter=0;
+                            ((PlayActivity) mActivity).setTrueCounter(0);
                             mActivity.finish();
                         }
                     });
