@@ -2,13 +2,16 @@ package ba.number.game;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +41,8 @@ public class QuestionFragment extends Fragment {
     int function=0,x=0,y=0;
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
+    Vibrator vibrator;
+    Toast toast;
 
     @Override
     public void onAttach(Activity activity){
@@ -68,6 +73,11 @@ public class QuestionFragment extends Fragment {
         answerEt = (EditText)rootView.findViewById(R.id.answerEt);
         nextBtn = (Button)rootView.findViewById(R.id.nextBtn);
         nextBtn.setEnabled(false);
+
+        vibrator = ((Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE));
+
+        toast = Toast.makeText(getActivity(), "" ,Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
 
         int randomFunctionIndex=0;
         if (listaFunkcija.size()>1)
@@ -112,36 +122,48 @@ public class QuestionFragment extends Fragment {
                     case 1:
                         String answer = answerEt.getText().toString();
                         if (x+y==Integer.valueOf(answer)){
-                            Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
+                            toast.setText("TRUE");
+                            toast.show();
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
+                            toast.setText("FALSE");
+                            toast.show();
+                            vibrator.vibrate(800);// vibration for 800 milliseconds
                         }
                         break;
                     case 2:
                         String answer2 = answerEt.getText().toString();
                         if (x-y==Integer.valueOf(answer2)){
-                            Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
+                            toast.setText("TRUE");
+                            toast.show();
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
+                            toast.setText("FALSE");
+                            toast.show();
+                            vibrator.vibrate(800);
                         }
                         break;
                     case 3:
                         String answer3 = answerEt.getText().toString();
                         if (x*y==Integer.valueOf(answer3)){
-                            Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
+                            toast.setText("TRUE");
+                            toast.show();
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
+                            toast.setText("FALSE");
+                            toast.show();
+                            vibrator.vibrate(800);
                         }
                     case 4:
                         String answer4 = answerEt.getText().toString();
                         if (x/y==Integer.valueOf(answer4)){
-                            Toast.makeText(getActivity(),"TRUE", Toast.LENGTH_LONG).show();
+                            toast.setText("TRUE");
+                            toast.show();
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            Toast.makeText(getActivity(), "FALSE", Toast.LENGTH_LONG).show();
+                            toast.setText("FALSE");
+                            toast.show();
+                            vibrator.vibrate(800);
                         }
                         break;
                 }
