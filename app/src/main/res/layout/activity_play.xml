@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ba.number.game.PlayActivity"
+    tools:context="ba.number.game.math.PlayActivity"
     tools:ignore="MergeRootFrame" />

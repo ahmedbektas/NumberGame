@@ -14,10 +14,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/questionTxt"
-        android:layout_marginTop="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/nextBtn"
-        android:layout_alignEnd="@+id/nextBtn" />
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -30,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="26dp" >
         <requestFocus/>
-        </EditText>>
+    </EditText>>
 
     <Button
         android:layout_width="wrap_content"

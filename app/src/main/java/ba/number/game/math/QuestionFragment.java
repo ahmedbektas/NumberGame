@@ -1,11 +1,14 @@
-package ba.number.game;
+package ba.number.game.math;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
@@ -16,16 +19,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import ba.number.game.R;
+import ba.number.game.math.PlayActivity;
 
 /**
  * Created by Admin on 23.4.2015..
@@ -43,6 +46,7 @@ public class QuestionFragment extends Fragment {
     ActionBarActivity mActivity;
     Vibrator vibrator;
     Toast toast;
+    SharedPreferences prefs;
 
     @Override
     public void onAttach(Activity activity){
@@ -58,6 +62,8 @@ public class QuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("QuestionFragment", "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_question, container, false);
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         rootView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -180,6 +186,10 @@ public class QuestionFragment extends Fragment {
                         public void onClick(DialogInterface dialog, int which) {
                             PlayActivity.questionCounter=0;
                             ((PlayActivity) mActivity).setTrueCounter(0);
+                            int oldScore = prefs.getInt("mathQuestionScore", 0);
+                            prefs.edit().putInt("mathQuestionScore", oldScore + (((PlayActivity) mActivity).getTrueCounter()*10));
+
+                            getActivity().setResult(getActivity().RESULT_OK, new Intent().putExtra("score", oldScore + (((PlayActivity) mActivity).getTrueCounter()*10)));
                             mActivity.finish();
                         }
                     });

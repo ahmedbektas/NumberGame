@@ -3,14 +3,23 @@
     package="ba.number.game" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".math.FinalLesson"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".math.PlayActivity"
+            android:label="@string/title_activity_play" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,8 +27,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlayActivity"
-            android:label="@string/title_activity_play" >
+            android:name=".math.MathActivity"
+            android:label="@string/title_activity_math_" >
+        </activity>
+        <activity
+            android:name=".math.NumberLearningActivity"
+            android:label="@string/title_activity_number_learning" >
+        </activity>
+        <activity
+            android:name=".math.NumberComparisonActivity"
+            android:label="@string/title_activity_number_comparison" >
+        </activity>
+        <activity
+            android:name=".others.GuessImageActivity"
+            android:label="@string/title_activity_guess_image" >
         </activity>
     </application>
 
