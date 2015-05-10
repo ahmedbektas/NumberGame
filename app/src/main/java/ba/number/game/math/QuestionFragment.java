@@ -29,6 +29,7 @@ import java.util.Random;
 
 import ba.number.game.R;
 import ba.number.game.math.PlayActivity;
+import ba.number.game.util.Prefs;
 
 /**
  * Created by Admin on 23.4.2015..
@@ -46,7 +47,6 @@ public class QuestionFragment extends Fragment {
     ActionBarActivity mActivity;
     Vibrator vibrator;
     Toast toast;
-    SharedPreferences prefs;
 
     @Override
     public void onAttach(Activity activity){
@@ -63,8 +63,6 @@ public class QuestionFragment extends Fragment {
         Log.i("QuestionFragment", "onCreateView");
         View rootView = inflater.inflate(R.layout.fragment_question, container, false);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         rootView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -73,7 +71,12 @@ public class QuestionFragment extends Fragment {
         });
 
         mActivity.getSupportActionBar().setTitle("Answer question " + PlayActivity.questionCounter);
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (((PlayActivity) mActivity).getTrueCounter()*10));
+
+        int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.MATH_QUESTION_SCORE);
+
+        Log.i("QuestionFragment", "oldScore: " + oldScore);
+
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((PlayActivity) mActivity).getTrueCounter() * 10) + "     Total score: " + (oldScore + (((PlayActivity) mActivity).getTrueCounter() * 10)));
 
         questionTxt = (TextView)rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText)rootView.findViewById(R.id.answerEt);
@@ -160,6 +163,7 @@ public class QuestionFragment extends Fragment {
                             toast.show();
                             vibrator.vibrate(800);
                         }
+                        break;
                     case 4:
                         String answer4 = answerEt.getText().toString();
                         if (x/y==Integer.valueOf(answer4)){
@@ -185,11 +189,16 @@ public class QuestionFragment extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             PlayActivity.questionCounter=0;
-                            ((PlayActivity) mActivity).setTrueCounter(0);
-                            int oldScore = prefs.getInt("mathQuestionScore", 0);
-                            prefs.edit().putInt("mathQuestionScore", oldScore + (((PlayActivity) mActivity).getTrueCounter()*10));
 
-                            getActivity().setResult(getActivity().RESULT_OK, new Intent().putExtra("score", oldScore + (((PlayActivity) mActivity).getTrueCounter()*10)));
+                            int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.MATH_QUESTION_SCORE);
+                            int totalScore = oldScore + (((PlayActivity) mActivity).getTrueCounter()*10);
+
+                            Prefs.getInstance(getActivity()).insertScore(Prefs.MATH_QUESTION_SCORE, totalScore);
+
+                            getActivity().setResult(getActivity().RESULT_OK, new Intent().putExtra("score", totalScore));
+
+                            ((PlayActivity) mActivity).setTrueCounter(0);
+
                             mActivity.finish();
                         }
                     });

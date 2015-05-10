@@ -1,13 +1,15 @@
-package ba.number.game.math;
+package ba.number.game.math.operations;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import ba.number.game.R;
+import ba.number.game.math.QuestionFragment;
 
-public class NumberLearningActivity extends ActionBarActivity {
+public class SumActivity extends ActionBarActivity {
 
     Bundle bundle;
     public static int questionCounter = 0;
@@ -16,9 +18,10 @@ public class NumberLearningActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number_learning);
+        setContentView(R.layout.activity_sum);
+        Log.i("SumActivity", "onCreate");
 
-//u bundle snimam podatke iz MainActivity-a
+        //u bundle snimam podatke iz MainActivity-a
         bundle = getIntent().getExtras();
 
         if (savedInstanceState == null) {
@@ -39,10 +42,14 @@ public class NumberLearningActivity extends ActionBarActivity {
 
     public void ubaciFragment(){
         questionCounter++;
+        //ovdje pravim instancu(objekat) od QuestionFragmenta
+        SumFragment mQuestionFragment = new SumFragment();
+        //ovdje vrijednosti iz bundle ubacujem u mQuestionFragment
+        mQuestionFragment.setArguments(bundle);
+
         //ovdje ubacujem fragment u PlayActivity
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, NumberLearningFragment.newInstance(Integer.valueOf(bundle.getString("numberLimit"))))
+                .replace(R.id.container, mQuestionFragment)
                 .commit();
     }
-
 }

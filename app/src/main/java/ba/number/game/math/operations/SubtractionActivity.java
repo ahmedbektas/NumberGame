@@ -1,33 +1,34 @@
-package ba.number.game.others;
+package ba.number.game.math.operations;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import ba.number.game.R;
+import ba.number.game.math.QuestionFragment;
 
-public class GuessImageActivity extends ActionBarActivity {
+public class SubtractionActivity extends ActionBarActivity {
+
     Bundle bundle;
     public static int questionCounter = 0;
     private int trueCounter=0;
 
-    public static ArrayList<String> animalImages = new ArrayList<>(Arrays.asList("bird","cat","chicken","cow","dog","duck"));
-    public static ArrayList<String> vehicleImages = new ArrayList<>(Arrays.asList("airplane","bicycle","bus","car","motorcycle","train"));
-    public static ArrayList<String> plantImages = new ArrayList<>(Arrays.asList("pineapple","apple","banana","pear","strawberry","orange"));
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guess_image);
+        setContentView(R.layout.activity_subtraction);
+        Log.i("SumActivity", "onCreate");
 
+        //u bundle snimam podatke iz MainActivity-a
         bundle = getIntent().getExtras();
 
         if (savedInstanceState == null) {
             ubaciFragment();
         }
     }
+
     public int getTrueCounter() {
         return trueCounter;
     }
@@ -41,9 +42,14 @@ public class GuessImageActivity extends ActionBarActivity {
 
     public void ubaciFragment(){
         questionCounter++;
+        //ovdje pravim instancu(objekat) od QuestionFragmenta
+        SubtractionFragment mQuestionFragment = new SubtractionFragment();
+        //ovdje vrijednosti iz bundle ubacujem u mQuestionFragment
+        mQuestionFragment.setArguments(bundle);
+
         //ovdje ubacujem fragment u PlayActivity
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, GuessImageFragment.newInstance(bundle.getString("questionType")))
+                .replace(R.id.container, mQuestionFragment)
                 .commit();
     }
 }

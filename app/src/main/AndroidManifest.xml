@@ -3,20 +3,14 @@
     package="ba.number.game" >
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name=".math.FinalLesson"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name=".math.PlayActivity"
-            android:label="@string/title_activity_play" >
-        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
@@ -27,20 +21,44 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".math.SevenFinalLessonActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".math.PlayActivity"
+            android:label="@string/title_activity_play" >
+        </activity>
+        <activity
             android:name=".math.MathActivity"
             android:label="@string/title_activity_math_" >
         </activity>
         <activity
-            android:name=".math.NumberLearningActivity"
+            android:name=".math.OneNumberLearningActivity"
             android:label="@string/title_activity_number_learning" >
         </activity>
         <activity
-            android:name=".math.NumberComparisonActivity"
+            android:name=".math.TwoNumberComparisonActivity"
             android:label="@string/title_activity_number_comparison" >
         </activity>
         <activity
             android:name=".others.GuessImageActivity"
             android:label="@string/title_activity_guess_image" >
+        </activity>
+        <activity
+            android:name=".math.operations.SumActivity"
+            android:label="@string/title_activity_sum" >
+        </activity>
+        <activity
+            android:name=".math.operations.SubtractionActivity"
+            android:label="@string/title_activity_subtraction" >
+        </activity>
+        <activity
+            android:name=".math.operations.MultiplicationActivity"
+            android:label="@string/title_activity_multiplication" >
+        </activity>
+        <activity
+            android:name=".math.operations.DivisionActivity"
+            android:label="@string/title_activity_division" >
         </activity>
     </application>
 

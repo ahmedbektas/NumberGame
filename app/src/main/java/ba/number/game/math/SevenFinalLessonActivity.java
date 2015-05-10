@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import ba.number.game.R;
 
 
-public class FinalLesson extends ActionBarActivity {
+public class SevenFinalLessonActivity extends ActionBarActivity {
 
     CheckBox sumCheckBox, subtractionCheckBox, multiplicationCheckBox, divisionCheckBox;
     Spinner numberLimit;
@@ -39,7 +37,7 @@ public class FinalLesson extends ActionBarActivity {
                 Log.i("MainActivity", "play");
                 PlayActivity.questionCounter=0;
 
-                Intent intent = new Intent(FinalLesson.this, PlayActivity.class);
+                Intent intent = new Intent(SevenFinalLessonActivity.this, PlayActivity.class);
                 ArrayList<Integer> listaFunkcija = new ArrayList<>();
                 if (sumCheckBox.isChecked())
                     listaFunkcija.add(1);

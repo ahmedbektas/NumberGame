@@ -16,7 +16,7 @@
     </string-array>
     <string name="title_activity_play">Answer the question</string>
     <string name="question_title">Answer the question:</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Number game</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_math_">Math_Activity</string>
@@ -26,5 +26,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_number_comparison">NumberComparisonActivity</string>
     <string name="title_activity_guess_image">GuessImageActivity</string>
+    <string name="title_activity_sum">SumActivity</string>
+    <string name="title_activity_subtraction">SubtractionActivity</string>
+    <string name="title_activity_multiplication">MultiplicationActivity</string>
+    <string name="title_activity_division">DivisionActivity</string>
 
 </resources>

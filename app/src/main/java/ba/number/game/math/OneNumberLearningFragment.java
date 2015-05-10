@@ -28,23 +28,22 @@ import java.util.Random;
 
 import ba.number.game.R;
 import ba.number.game.util.NumberToWordsConverter;
+import ba.number.game.util.Prefs;
 
-public class NumberComparisonFragment extends Fragment {
+public class OneNumberLearningFragment extends Fragment {
 
     TextView questionTxt;
     EditText answerEt;
     Button nextBtn;
     int numberLimit;
-    int a, b, c;
     Random rn = new Random();
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
     Vibrator vibrator;
     Toast toast;
-    SharedPreferences prefs;
 
-    public static NumberComparisonFragment newInstance(int numberLimit) {
-        NumberComparisonFragment fragment = new NumberComparisonFragment();
+    public static OneNumberLearningFragment newInstance(int numberLimit) {
+        OneNumberLearningFragment fragment = new OneNumberLearningFragment();
         Bundle args = new Bundle();
         args.putInt("numberLimit", numberLimit);
         fragment.setArguments(args);
@@ -69,8 +68,6 @@ public class NumberComparisonFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_number_learning, container, false);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
         rootView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -78,8 +75,12 @@ public class NumberComparisonFragment extends Fragment {
             }
         });
 
-        mActivity.getSupportActionBar().setTitle("Answer question " + NumberComparisonActivity.questionCounter);
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (((NumberComparisonActivity) mActivity).getTrueCounter() * 10));
+        mActivity.getSupportActionBar().setTitle("Answer question " + OneNumberLearningActivity.questionCounter);
+
+        int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_LEARNING_SCORE);
+        Log.i("NumberLearningFragment", "oldScore: " + oldScore);
+
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((OneNumberLearningActivity) mActivity).getTrueCounter() * 10) + "     Total score: " + (oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter() * 10)));
 
         questionTxt = (TextView) rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText) rootView.findViewById(R.id.answerEt);
@@ -91,47 +92,44 @@ public class NumberComparisonFragment extends Fragment {
         toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
 
-        a=rn.nextInt(numberLimit) + 1;
-        generateNumber();
+        final int questionNumber = rn.nextInt(numberLimit) + 1;
 
-        questionTxt.setText("Which number is largest?\n" + a + "   " + b + "   " + c);
-
+        questionTxt.setText(NumberToWordsConverter.convert(questionNumber));
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int greatestNumber = a;
-                if (b>a)
-                    greatestNumber=b;
-                if (c>b)
-                    greatestNumber=c;
-
-                if(greatestNumber==Integer.valueOf(answerEt.getText().toString())){
+                if(questionNumber==Integer.valueOf(answerEt.getText().toString())){
                     toast.setText("TRUE");
                     toast.show();
-                    ((NumberComparisonActivity) mActivity).increaseTrueCounter();
+                    ((OneNumberLearningActivity) mActivity).increaseTrueCounter();
                 }else {
                     toast.setText("FALSE");
                     toast.show();
                     vibrator.vibrate(800);// vibration for 800 milliseconds
                 }
-                if (NumberComparisonActivity.questionCounter<10) {
-                    ((NumberComparisonActivity) mActivity).ubaciFragment();
-                    Log.i("NumberCmpsnFragment", "insert fragment");
+                if (OneNumberLearningActivity.questionCounter<10) {
+                    ((OneNumberLearningActivity) mActivity).ubaciFragment();
+                    Log.i("NumberLearningFragment", "insert fragment");
                 }else{
-                    Log.i("NumberCmpsnFragment", "show score");
+                    Log.i("NumberLearningFragment", "show score");
                     AlertDialog.Builder scoreDialog = new AlertDialog.Builder(getActivity());
-                    scoreDialog.setTitle("Score: " + ((NumberComparisonActivity) mActivity).getTrueCounter()*10);
-                    scoreDialog.setMessage("True answers: " + ((NumberComparisonActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((NumberComparisonActivity) mActivity).getTrueCounter()));
+                    scoreDialog.setTitle("Score: " + ((OneNumberLearningActivity) mActivity).getTrueCounter()*10);
+                    scoreDialog.setMessage("True answers: " + ((OneNumberLearningActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((OneNumberLearningActivity) mActivity).getTrueCounter()));
                     scoreDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            NumberComparisonActivity.questionCounter=0;
-                            ((NumberComparisonActivity) mActivity).setTrueCounter(0);
-                            int oldScore = prefs.getInt("numberComparisonScore", 0);
-                            prefs.edit().putInt("numberComparisonScore", oldScore + (((NumberComparisonActivity) mActivity).getTrueCounter()*10));
+                            OneNumberLearningActivity.questionCounter=0;
 
-                            getActivity().setResult(getActivity().RESULT_OK, new Intent().putExtra("score", oldScore + (((NumberComparisonActivity) mActivity).getTrueCounter()*10)));
+                            int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_LEARNING_SCORE);
+                            int totalScore = oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter()*10);
+
+                            Prefs.getInstance(getActivity()).insertScore(Prefs.NUMBER_LEARNING_SCORE, totalScore);
+
+                            getActivity().setResult(getActivity().RESULT_OK, new Intent().putExtra("score", totalScore));
+
+                            ((OneNumberLearningActivity) mActivity).setTrueCounter(0);
+
                             mActivity.finish();
                         }
                     });
@@ -155,12 +153,5 @@ public class NumberComparisonFragment extends Fragment {
         });
 
         return rootView;
-    }
-
-    private void generateNumber (){
-        b=rn.nextInt(numberLimit) + 1;
-        c=rn.nextInt(numberLimit) + 1;
-        if (a==b || b==c || a==c)
-            generateNumber();
     }
 }

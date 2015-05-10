@@ -51,8 +51,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lesson 5"
-        android:id="@+id/lesson5Btn"
+        android:text="Multiplication"
+        android:id="@+id/multiplicationBtn"
         android:layout_below="@+id/sumBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -62,9 +62,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lesson 6"
-        android:id="@+id/lesson6Btn"
-        android:layout_alignTop="@+id/lesson5Btn"
+        android:text="Division"
+        android:id="@+id/divisionBtn"
+        android:layout_alignTop="@+id/multiplicationBtn"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:enabled="false"/>
@@ -72,8 +72,8 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lesson 7"
-        android:id="@+id/lesson7Btn"
+        android:text="Final Lesson"
+        android:id="@+id/finalLessonBtn"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="65dp"
