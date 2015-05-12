@@ -14,25 +14,51 @@
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/nextBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/image"
-        android:orientation="horizontal">
+        android:gravity="center">
 
-        <EditText
-            android:id="@+id/answerEt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="text">
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/nextBtn"
+        <RadioButton
+            android:id="@+id/radioButton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next" />
-    </LinearLayout>
+            android:layout_marginBottom="10dp"
+            android:text="New RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="New RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="New RadioButton" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Next" />
 </RelativeLayout>

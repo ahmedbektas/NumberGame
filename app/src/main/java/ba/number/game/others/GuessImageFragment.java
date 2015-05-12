@@ -19,8 +19,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import ba.number.game.R;
@@ -28,7 +31,7 @@ import ba.number.game.R;
 public class GuessImageFragment extends Fragment {
 
     ImageView imageView;
-    EditText answerEt;
+    RadioGroup radioGroup;
     Button nextBtn;
     String questionType = "";
     int a, b, c;
@@ -38,6 +41,7 @@ public class GuessImageFragment extends Fragment {
     Vibrator vibrator;
     Toast toast;
     String randomImage;
+    RadioButton radioButton1, radioButton2, radioButton3, radioButton4;
 
     public static GuessImageFragment newInstance(String questionType) {
         GuessImageFragment fragment = new GuessImageFragment();
@@ -76,7 +80,11 @@ public class GuessImageFragment extends Fragment {
         mActivity.getSupportActionBar().setSubtitle("Score: " + (((GuessImageActivity) mActivity).getTrueCounter() * 10));
 
         imageView = (ImageView) rootView.findViewById(R.id.image);
-        answerEt = (EditText) rootView.findViewById(R.id.answerEt);
+        radioGroup = (RadioGroup) rootView.findViewById(R.id.radioGroup);
+        radioButton1 = (RadioButton) rootView.findViewById(R.id.radioButton1);
+        radioButton2 = (RadioButton) rootView.findViewById(R.id.radioButton2);
+        radioButton3 = (RadioButton) rootView.findViewById(R.id.radioButton3);
+        radioButton4 = (RadioButton) rootView.findViewById(R.id.radioButton4);
         nextBtn = (Button) rootView.findViewById(R.id.nextBtn);
         nextBtn.setEnabled(false);
 
@@ -85,23 +93,33 @@ public class GuessImageFragment extends Fragment {
         toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
 
+        ArrayList<String> answers;
+
         switch (questionType){
             case "animals":
                 randomImage = GuessImageActivity.animalImages.get(rn.nextInt(5));
                 int res = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
                 imageView.setImageResource(res);
+                answers = generateFalseAnswersAnimals(randomImage);
                 break;
             case "plants":
                 randomImage = GuessImageActivity.plantImages.get(rn.nextInt(5));
                 int res2 = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
                 imageView.setImageResource(res2);
+
+                answers = generateFalseAnswersPlants(randomImage);
                 break;
             case "vehicles":
                 randomImage = GuessImageActivity.vehicleImages.get(rn.nextInt(5));
                 int res3 = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
                 imageView.setImageResource(res3);
+
+                answers = generateFalseAnswersVehicles(randomImage);
                 break;
         }
+
+
+
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,20 +155,60 @@ public class GuessImageFragment extends Fragment {
             }
         });
 
-        answerEt.addTextChangedListener(new TextWatcher() {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>0)
-                    nextBtn.setEnabled(true);
-                else
-                    nextBtn.setEnabled(false);
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.radioButton1:
+
+                        break;
+                    case R.id.radioButton2:
+                        break;
+                    case R.id.radioButton3:
+                        break;
+                    case R.id.radioButton4:
+                        break;
+
+                }
             }
-            @Override
-            public void afterTextChanged(Editable s) { }
         });
 
         return rootView;
+    }
+
+    public ArrayList<String> generateFalseAnswersAnimals (String trueAnswer){
+        ArrayList<String> randomAnswers = new ArrayList<>();
+        randomAnswers.add(trueAnswer);
+        do{
+            String falseAnswer = GuessImageActivity.animalImages.get(rn.nextInt(5));
+            if (!randomAnswers.contains(falseAnswer))
+                randomAnswers.add(falseAnswer);
+        }while(randomAnswers.size() < 4);
+
+        return randomAnswers;
+    }
+
+    public ArrayList<String> generateFalseAnswersPlants (String trueAnswer){
+        ArrayList<String> randomAnswers = new ArrayList<>();
+        randomAnswers.add(trueAnswer);
+        do{
+            String falseAnswer = GuessImageActivity.plantImages.get(rn.nextInt(5));
+            if (!randomAnswers.contains(falseAnswer))
+                randomAnswers.add(falseAnswer);
+        }while(randomAnswers.size() < 4);
+
+        return randomAnswers;
+    }
+
+    public ArrayList<String> generateFalseAnswersVehicles (String trueAnswer){
+        ArrayList<String> randomAnswers = new ArrayList<>();
+        randomAnswers.add(trueAnswer);
+        do{
+            String falseAnswer = GuessImageActivity.vehicleImages.get(rn.nextInt(5));
+            if (!randomAnswers.contains(falseAnswer))
+                randomAnswers.add(falseAnswer);
+        }while(randomAnswers.size() < 4);
+
+        return randomAnswers;
     }
 }
