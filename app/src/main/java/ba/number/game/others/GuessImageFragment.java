@@ -24,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import ba.number.game.R;
@@ -67,7 +68,7 @@ public class GuessImageFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_guess_image, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_guess_image, container, false);
 
         rootView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -86,14 +87,13 @@ public class GuessImageFragment extends Fragment {
         radioButton3 = (RadioButton) rootView.findViewById(R.id.radioButton3);
         radioButton4 = (RadioButton) rootView.findViewById(R.id.radioButton4);
         nextBtn = (Button) rootView.findViewById(R.id.nextBtn);
-        nextBtn.setEnabled(false);
 
         vibrator = ((Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE));
 
         toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
 
-        ArrayList<String> answers;
+        ArrayList<String> answers = new ArrayList<>();
 
         switch (questionType){
             case "animals":
@@ -118,13 +118,19 @@ public class GuessImageFragment extends Fragment {
                 break;
         }
 
+        Collections.shuffle(answers);
 
-
+        radioButton1.setText(answers.get(0));
+        radioButton2.setText(answers.get(1));
+        radioButton3.setText(answers.get(2));
+        radioButton4.setText(answers.get(3));
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(randomImage.equals(answerEt.getText().toString().toLowerCase())){
+                RadioButton answerRB = (RadioButton)rootView.findViewById(radioGroup.getCheckedRadioButtonId());
+
+                if (randomImage.equals(answerRB.getText().toString().toLowerCase())){
                     toast.setText("TRUE");
                     toast.show();
                     ((GuessImageActivity) mActivity).increaseTrueCounter();

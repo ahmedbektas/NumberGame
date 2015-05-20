@@ -17,14 +17,13 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/nextBtn"
+        android:layout_above="@+id/nextBtn"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/image"
-        android:gravity="center">
+        android:gravity="center|left">
 
         <RadioButton
             android:id="@+id/radioButton1"

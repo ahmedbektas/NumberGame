@@ -35,10 +35,11 @@ public class OneNumberLearningFragment extends Fragment {
     TextView questionTxt;
     EditText answerEt;
     Button nextBtn;
-    int numberLimit;
+    int numberLimit, scoreMultiplier = 5;
     Random rn = new Random();
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
+
     Vibrator vibrator;
     Toast toast;
 
@@ -75,12 +76,27 @@ public class OneNumberLearningFragment extends Fragment {
             }
         });
 
+        switch (numberLimit){
+            case 10:
+                scoreMultiplier  = 5;
+                break;
+            case 20:
+                scoreMultiplier  = 10;
+                break;
+            case 100:
+                scoreMultiplier  = 15;
+                break;
+            case 1000:
+                scoreMultiplier  = 20;
+                break;
+        }
+
         mActivity.getSupportActionBar().setTitle("Answer question " + OneNumberLearningActivity.questionCounter);
 
         int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_LEARNING_SCORE);
         Log.i("NumberLearningFragment", "oldScore: " + oldScore);
 
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (((OneNumberLearningActivity) mActivity).getTrueCounter() * 10) + "     Total score: " + (oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter() * 10)));
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((OneNumberLearningActivity) mActivity).getTrueCounter() * scoreMultiplier) + "     Total score: " + (oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter() * scoreMultiplier)));
 
         questionTxt = (TextView) rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText) rootView.findViewById(R.id.answerEt);
@@ -114,7 +130,7 @@ public class OneNumberLearningFragment extends Fragment {
                 }else{
                     Log.i("NumberLearningFragment", "show score");
                     AlertDialog.Builder scoreDialog = new AlertDialog.Builder(getActivity());
-                    scoreDialog.setTitle("Score: " + ((OneNumberLearningActivity) mActivity).getTrueCounter()*10);
+                    scoreDialog.setTitle("Score: " + ((OneNumberLearningActivity) mActivity).getTrueCounter()*scoreMultiplier);
                     scoreDialog.setMessage("True answers: " + ((OneNumberLearningActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((OneNumberLearningActivity) mActivity).getTrueCounter()));
                     scoreDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -122,7 +138,7 @@ public class OneNumberLearningFragment extends Fragment {
                             OneNumberLearningActivity.questionCounter=0;
 
                             int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_LEARNING_SCORE);
-                            int totalScore = oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter()*10);
+                            int totalScore = oldScore + (((OneNumberLearningActivity) mActivity).getTrueCounter()*scoreMultiplier);
 
                             Prefs.getInstance(getActivity()).insertScore(Prefs.NUMBER_LEARNING_SCORE, totalScore);
 

@@ -42,7 +42,7 @@ public class QuestionFragment extends Fragment {
     ArrayList<Integer> listaFunkcija;
     int numberLimit;
     Random rn = new Random();
-    int function=0,x=0,y=0;
+    int function=0,x=0,y=0, scoreMultiplier = 5;
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
     Vibrator vibrator;
@@ -70,13 +70,28 @@ public class QuestionFragment extends Fragment {
             }
         });
 
+        switch (numberLimit){
+            case 10:
+                scoreMultiplier  = 5;
+                break;
+            case 20:
+                scoreMultiplier  = 10;
+                break;
+            case 100:
+                scoreMultiplier  = 15;
+                break;
+            case 1000:
+                scoreMultiplier  = 20;
+                break;
+        }
+
         mActivity.getSupportActionBar().setTitle("Answer question " + PlayActivity.questionCounter);
 
         int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.MATH_QUESTION_SCORE);
 
         Log.i("QuestionFragment", "oldScore: " + oldScore);
 
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (((PlayActivity) mActivity).getTrueCounter() * 10) + "     Total score: " + (oldScore + (((PlayActivity) mActivity).getTrueCounter() * 10)));
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((PlayActivity) mActivity).getTrueCounter() * scoreMultiplier) + "     Total score: " + (oldScore + (((PlayActivity) mActivity).getTrueCounter() * scoreMultiplier)));
 
         questionTxt = (TextView)rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText)rootView.findViewById(R.id.answerEt);
@@ -183,7 +198,7 @@ public class QuestionFragment extends Fragment {
                 }else{
                     Log.i("QuestionFragment", "show score");
                     AlertDialog.Builder scoreDialog = new AlertDialog.Builder(getActivity());
-                    scoreDialog.setTitle("Score: " + ((PlayActivity) mActivity).getTrueCounter()*10);
+                    scoreDialog.setTitle("Score: " + ((PlayActivity) mActivity).getTrueCounter()*scoreMultiplier);
                     scoreDialog.setMessage("True answers: " + ((PlayActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((PlayActivity) mActivity).getTrueCounter()));
                     scoreDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -191,7 +206,7 @@ public class QuestionFragment extends Fragment {
                             PlayActivity.questionCounter=0;
 
                             int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.MATH_QUESTION_SCORE);
-                            int totalScore = oldScore + (((PlayActivity) mActivity).getTrueCounter()*10);
+                            int totalScore = oldScore + (((PlayActivity) mActivity).getTrueCounter()*scoreMultiplier);
 
                             Prefs.getInstance(getActivity()).insertScore(Prefs.MATH_QUESTION_SCORE, totalScore);
 

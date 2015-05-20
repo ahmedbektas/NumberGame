@@ -32,7 +32,7 @@ public class TwoNumberComparisonFragment extends Fragment {
     TextView questionTxt;
     EditText answerEt;
     Button nextBtn;
-    int numberLimit;
+    int numberLimit, scoreMultiplier = 5;
     int a, b, c;
     Random rn = new Random();
     //ovo je instanca, tj. objekat
@@ -73,11 +73,26 @@ public class TwoNumberComparisonFragment extends Fragment {
             }
         });
 
+        switch (numberLimit){
+            case 10:
+                scoreMultiplier  = 5;
+                break;
+            case 20:
+                scoreMultiplier  = 10;
+                break;
+            case 100:
+                scoreMultiplier  = 15;
+                break;
+            case 1000:
+                scoreMultiplier  = 20;
+                break;
+        }
+
         mActivity.getSupportActionBar().setTitle("Answer question " + TwoNumberComparisonActivity.questionCounter);
 
         int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_COMPARISON_SCORE);
         Log.i("NumberCmpsnFragment", "oldScore: " + oldScore);
-        mActivity.getSupportActionBar().setSubtitle("Score: " + (((TwoNumberComparisonActivity) mActivity).getTrueCounter() * 10) + "     Total score: " + (oldScore + (((TwoNumberComparisonActivity) mActivity).getTrueCounter() * 10)));
+        mActivity.getSupportActionBar().setSubtitle("Score: " + (((TwoNumberComparisonActivity) mActivity).getTrueCounter() * scoreMultiplier) + "     Total score: " + (oldScore + (((TwoNumberComparisonActivity) mActivity).getTrueCounter() * scoreMultiplier)));
 
         questionTxt = (TextView) rootView.findViewById(R.id.questionTxt);
         answerEt = (EditText) rootView.findViewById(R.id.answerEt);
@@ -119,7 +134,7 @@ public class TwoNumberComparisonFragment extends Fragment {
                 }else{
                     Log.i("NumberCmpsnFragment", "show score");
                     AlertDialog.Builder scoreDialog = new AlertDialog.Builder(getActivity());
-                    scoreDialog.setTitle("Score: " + ((TwoNumberComparisonActivity) mActivity).getTrueCounter()*10);
+                    scoreDialog.setTitle("Score: " + ((TwoNumberComparisonActivity) mActivity).getTrueCounter()*scoreMultiplier);
                     scoreDialog.setMessage("True answers: " + ((TwoNumberComparisonActivity) mActivity).getTrueCounter() + "\nFalse answers: " + (10-((TwoNumberComparisonActivity) mActivity).getTrueCounter()));
                     scoreDialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -127,7 +142,7 @@ public class TwoNumberComparisonFragment extends Fragment {
                             TwoNumberComparisonActivity.questionCounter=0;
 
                             int oldScore = Prefs.getInstance(getActivity()).getScore(Prefs.NUMBER_COMPARISON_SCORE);
-                            int totalScore = oldScore + (((TwoNumberComparisonActivity) mActivity).getTrueCounter()*10);
+                            int totalScore = oldScore + (((TwoNumberComparisonActivity) mActivity).getTrueCounter()*scoreMultiplier);
 
                             Prefs.getInstance(getActivity()).insertScore(Prefs.NUMBER_COMPARISON_SCORE, totalScore);
 
