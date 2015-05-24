@@ -47,7 +47,6 @@ public class QuestionFragment extends Fragment {
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
     Vibrator vibrator;
-    Toast toast;
 
     @Override
     public void onAttach(Activity activity){
@@ -100,9 +99,6 @@ public class QuestionFragment extends Fragment {
         nextBtn.setEnabled(false);
 
         vibrator = ((Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE));
-
-        toast = Toast.makeText(getActivity(), "" ,Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
 
         int randomFunctionIndex=0;
         if (listaFunkcija.size()>1)
@@ -275,7 +271,7 @@ public class QuestionFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

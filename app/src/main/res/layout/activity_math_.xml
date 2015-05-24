@@ -1,110 +1,120 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
     tools:context="ba.number.game.math.MathActivity">
 
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Number learning"
         android:id="@+id/numberLearningBtn"
-        android:layout_alignParentTop="true"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/btn_numberlearning_enabled"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"
-        />
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Number comparison"
         android:id="@+id/numberComparisonBtn"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:background="@drawable/number_comparison_selector"
         android:enabled="false"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Sum"
         android:id="@+id/sumBtn"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/numberLearningBtn"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="79dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/sum_selector"
         android:enabled="false"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Subtraction"
         android:id="@+id/subtractionBtn"
-        android:layout_alignTop="@+id/sumBtn"
-        android:layout_alignParentRight="true"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/sumBtn"
+        android:background="@drawable/subtraction_selector"
         android:enabled="false"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Multiplication"
         android:id="@+id/multiplicationBtn"
-        android:layout_below="@+id/sumBtn"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="102dp"
+        android:layout_below="@+id/sumBtn"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/multiplication_selector"
         android:enabled="false"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Division"
         android:id="@+id/divisionBtn"
-        android:layout_alignTop="@+id/multiplicationBtn"
-        android:layout_alignParentRight="true"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/multiplicationBtn"
+        android:background="@drawable/division_selector"
         android:enabled="false"
         android:textColor="#ff0000"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
-        android:layout_width="140dp"
-        android:layout_height="55dp"
-        android:text="Final Lesson"
         android:id="@+id/finalLessonBtn"
-        android:layout_alignParentBottom="true"
+        android:layout_width="140dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/multiplicationBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="65dp"
-        android:enabled="false"
-        android:textColor="#0000ff"
-        android:background="#f7e5e5"
-        android:textSize="17sp"/>
+        android:layout_marginTop="13dp"
+        android:background="@drawable/finalleson_selector"
+        android:enabled="false" />
 
-    <Spinner
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/levels"
-        android:layout_centerInParent="true"
-        android:entries="@array/levels"/>
+        android:layout_below="@+id/finalLessonBtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose level: "
+            android:textColor="#e61f44"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/levels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/levels" />
+    </LinearLayout>
 </RelativeLayout>

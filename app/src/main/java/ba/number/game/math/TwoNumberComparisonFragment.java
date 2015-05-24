@@ -39,7 +39,6 @@ public class TwoNumberComparisonFragment extends Fragment {
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
     Vibrator vibrator;
-    Toast toast;
 
     public static TwoNumberComparisonFragment newInstance(int numberLimit) {
         TwoNumberComparisonFragment fragment = new TwoNumberComparisonFragment();
@@ -101,9 +100,6 @@ public class TwoNumberComparisonFragment extends Fragment {
         nextBtn.setEnabled(false);
 
         vibrator = ((Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE));
-
-        toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
 
         a=rn.nextInt(numberLimit) + 1;
         generateNumber();
@@ -191,7 +187,7 @@ public class TwoNumberComparisonFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

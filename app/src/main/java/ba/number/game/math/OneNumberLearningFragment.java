@@ -42,7 +42,6 @@ public class OneNumberLearningFragment extends Fragment {
     ActionBarActivity mActivity;
 
     Vibrator vibrator;
-    Toast toast;
 
     public static OneNumberLearningFragment newInstance(int numberLimit) {
         OneNumberLearningFragment fragment = new OneNumberLearningFragment();
@@ -105,9 +104,6 @@ public class OneNumberLearningFragment extends Fragment {
         nextBtn.setEnabled(false);
 
         vibrator = ((Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE));
-
-        toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
 
         final int questionNumber = rn.nextInt(numberLimit) + 1;
 
@@ -179,7 +175,7 @@ public class OneNumberLearningFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

@@ -43,7 +43,6 @@ public class DivisionFragment extends Fragment {
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
     Vibrator vibrator;
-    Toast toast;
 
     @Override
     public void onAttach(Activity activity){
@@ -96,8 +95,6 @@ public class DivisionFragment extends Fragment {
 
         vibrator = ((Vibrator)getActivity().getSystemService(Context.VIBRATOR_SERVICE));
 
-        toast = Toast.makeText(getActivity(), "" ,Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
 
                 x = rn.nextInt(numberLimit) + 1;
                 y = generateYforDivision(x);
@@ -182,7 +179,7 @@ public class DivisionFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

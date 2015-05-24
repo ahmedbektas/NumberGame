@@ -21,56 +21,67 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/nextBtn"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/image"
+        android:layout_centerHorizontal="true"
         android:gravity="center|left">
 
-        <RadioButton
-            android:id="@+id/radioButton1"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="New RadioButton"
-            android:textSize="21sp"
-            android:textColor="#00ff00"
-            />
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="New RadioButton"
-            android:textSize="21sp"
-            android:textColor="#00ff00"/>
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="New RadioButton"
+                android:textColor="#00ff00"
+                android:textSize="21sp" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="New RadioButton"
-            android:textSize="21sp"
-            android:textColor="#00ff00"/>
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="New RadioButton"
+                android:textColor="#00ff00"
+                android:textSize="21sp" />
+        </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/radioButton4"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New RadioButton"
-            android:textSize="21sp"
-            android:textColor="#00ff00"/>
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="New RadioButton"
+                android:textColor="#00ff00"
+                android:textSize="21sp" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:textColor="#00ff00"
+                android:textSize="21sp" />
+        </LinearLayout>
     </RadioGroup>
 
     <Button
         android:id="@+id/nextBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         android:layout_centerHorizontal="true"
-        android:text="Next"
-        android:textColor="#0000ff"
-        android:background="#f7e5e5"
-        android:textSize="19sp"
-        />
+        android:background="@drawable/next_selector"
+        android:enabled="false"/>
 </RelativeLayout>

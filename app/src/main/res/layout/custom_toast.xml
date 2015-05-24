@@ -15,5 +15,6 @@
         android:layout_height="wrap_content"
         android:text="You are toast"
         android:layout_marginLeft="15dp"
-        android:id="@+id/toastText" />
+        android:id="@+id/toastText"
+        android:textColor="#000"/>
 </LinearLayout>
