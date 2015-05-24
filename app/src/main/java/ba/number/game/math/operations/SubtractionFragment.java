@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,12 +110,10 @@ public class SubtractionFragment extends Fragment {
             public void onClick(View v) {
                 String answer2 = answerEt.getText().toString();
                 if (x-y==Integer.valueOf(answer2)){
-                    toast.setText("TRUE");
-                    toast.show();
+                    showToast(true, "TRUE");
                     ((SubtractionActivity) mActivity).increaseTrueCounter();
                 }else {
-                    toast.setText("FALSE");
-                    toast.show();
+                    showToast(false, "FALSE");
                     vibrator.vibrate(800);
                 }
                 if (SubtractionActivity.questionCounter<10) {
@@ -172,5 +171,22 @@ public class SubtractionFragment extends Fragment {
         }while(y > x);
 
         return y;
+    }
+
+    public void showToast (boolean isCorrect, String text){
+        Toast toast = new Toast(mActivity);
+
+        View toastView = mActivity.getLayoutInflater().inflate(R.layout.custom_toast, null);
+        ImageView toastImage = (ImageView) toastView.findViewById(R.id.toastImage);
+        TextView toastText = (TextView) toastView.findViewById(R.id.toastText);
+
+        toastText.setText(text);
+        toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
+
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastView);
+
+        toast.show();
     }
 }

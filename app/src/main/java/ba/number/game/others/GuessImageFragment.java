@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -131,12 +132,10 @@ public class GuessImageFragment extends Fragment {
                 RadioButton answerRB = (RadioButton)rootView.findViewById(radioGroup.getCheckedRadioButtonId());
 
                 if (randomImage.equals(answerRB.getText().toString().toLowerCase())){
-                    toast.setText("TRUE");
-                    toast.show();
+                    showToast(true, "TRUE");
                     ((GuessImageActivity) mActivity).increaseTrueCounter();
                 }else {
-                    toast.setText("FALSE, The correct answer is " + randomImage.toUpperCase());
-                    toast.show();
+                    showToast(false, "FALSE, The correct answer is " + randomImage.toUpperCase());
                     vibrator.vibrate(800);// vibration for 800 milliseconds
                 }
 
@@ -216,5 +215,22 @@ public class GuessImageFragment extends Fragment {
         }while(randomAnswers.size() < 4);
 
         return randomAnswers;
+    }
+
+    public void showToast (boolean isCorrect, String text){
+        Toast toast = new Toast(mActivity);
+
+        View toastView = mActivity.getLayoutInflater().inflate(R.layout.custom_toast, null);
+        ImageView toastImage = (ImageView) toastView.findViewById(R.id.toastImage);
+        TextView toastText = (TextView) toastView.findViewById(R.id.toastText);
+
+        toastText.setText(text);
+        toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
+
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastView);
+
+        toast.show();
     }
 }

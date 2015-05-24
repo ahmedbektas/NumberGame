@@ -178,10 +178,10 @@ public class MultiplicationFragment extends Fragment {
         TextView toastText = (TextView) toastView.findViewById(R.id.toastText);
 
         toastText.setText(text);
-        toastImage.setImageResource(isCorrect ? R.drawable.banana : R.drawable.apple);
+        toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
         toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 
         toast.show();

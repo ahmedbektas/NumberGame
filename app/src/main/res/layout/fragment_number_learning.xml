@@ -16,7 +16,8 @@
         android:id="@+id/questionTxt"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ff0000"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:id="@+id/answerEt"
         android:layout_below="@+id/questionTxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" >
+        android:layout_marginTop="26dp"
+        android:textColor="#00ff00">
         <requestFocus/>
     </EditText>>
 
@@ -38,5 +40,8 @@
         android:id="@+id/nextBtn"
         android:layout_below="@+id/answerEt"
         android:layout_marginTop="26dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#0000ff"
+        android:background="#f7e5e5"
+        android:textSize="19sp"/>
 </RelativeLayout>

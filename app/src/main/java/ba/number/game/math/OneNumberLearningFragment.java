@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,12 +117,10 @@ public class OneNumberLearningFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(questionNumber==Integer.valueOf(answerEt.getText().toString())){
-                    toast.setText("TRUE");
-                    toast.show();
+                     showToast(true, "TRUE");
                     ((OneNumberLearningActivity) mActivity).increaseTrueCounter();
                 }else {
-                    toast.setText("FALSE");
-                    toast.show();
+                    showToast(false, "FALSE");
                     vibrator.vibrate(800);// vibration for 800 milliseconds
                 }
                 if (OneNumberLearningActivity.questionCounter<10) {
@@ -169,5 +168,21 @@ public class OneNumberLearningFragment extends Fragment {
         });
 
         return rootView;
+    }
+    public void showToast (boolean isCorrect, String text){
+        Toast toast = new Toast(mActivity);
+
+        View toastView = mActivity.getLayoutInflater().inflate(R.layout.custom_toast, null);
+        ImageView toastImage = (ImageView) toastView.findViewById(R.id.toastImage);
+        TextView toastText = (TextView) toastView.findViewById(R.id.toastText);
+
+        toastText.setText(text);
+        toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
+
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(toastView);
+
+        toast.show();
     }
 }

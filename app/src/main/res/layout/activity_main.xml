@@ -11,35 +11,46 @@
 
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:background="@drawable/background"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Animals"
         android:id="@+id/animalsBtn"
         android:layout_marginBottom="22dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff0000"
+        android:background="#f7e5e5"
+        android:textSize="19sp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Plants"
         android:layout_marginBottom="22dp"
-        android:id="@+id/plantsBtn" />
+        android:id="@+id/plantsBtn"
+        android:textColor="#ff0000"
+        android:background="#f7e5e5"
+        android:textSize="19sp"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Vehicles"
         android:layout_marginBottom="22dp"
         android:id="@+id/vehiclesBtn"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff0000"
+        android:background="#f7e5e5"
+        android:textSize="19sp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="55dp"
         android:text="Math"
         android:id="@+id/mathBtn"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textColor="#0000ff"
+        android:background="#f7e5e5"
+        android:textSize="19sp"/>
 
 
 </LinearLayout>
