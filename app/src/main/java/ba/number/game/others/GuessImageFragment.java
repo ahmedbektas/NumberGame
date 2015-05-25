@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.CookiePolicy;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -165,13 +167,16 @@ public class GuessImageFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch(checkedId){
                     case R.id.radioButton1:
-
+                        nextBtn.setEnabled(true);
                         break;
                     case R.id.radioButton2:
+                        nextBtn.setEnabled(true);
                         break;
                     case R.id.radioButton3:
+                        nextBtn.setEnabled(true);
                         break;
                     case R.id.radioButton4:
+                        nextBtn.setEnabled(true);
                         break;
 
                 }
@@ -225,9 +230,11 @@ public class GuessImageFragment extends Fragment {
         TextView toastText = (TextView) toastView.findViewById(R.id.toastText);
 
         toastText.setText(text);
+        toastText.setTextColor(isCorrect ? Color.GREEN : Color.RED);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.CENTER, 0, 0);
+
+        toast.setGravity(Gravity.CENTER, 0, 17);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

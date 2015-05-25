@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
@@ -57,5 +58,46 @@ public class SevenFinalLessonActivity extends ActionBarActivity {
                 Log.i("MainActivity", "playDone");
             }
         });
+
+        sumCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    playBtn.setEnabled(isAtLeastOneButtonChecked());
+            }
+        });
+
+        subtractionCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                playBtn.setEnabled(isAtLeastOneButtonChecked());
+            }
+        });
+
+        multiplicationCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                playBtn.setEnabled(isAtLeastOneButtonChecked());
+            }
+        });
+
+        divisionCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                playBtn.setEnabled(isAtLeastOneButtonChecked());
+            }
+        });
+    }
+
+    private boolean isAtLeastOneButtonChecked (){
+        if (sumCheckBox.isChecked())
+            return true;
+        if (subtractionCheckBox.isChecked())
+            return true;
+        if (multiplicationCheckBox.isChecked())
+            return true;
+        if (divisionCheckBox.isChecked())
+            return true;
+
+        return false;
     }
 }

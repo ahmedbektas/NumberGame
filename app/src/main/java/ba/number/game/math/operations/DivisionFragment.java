@@ -106,10 +106,10 @@ public class DivisionFragment extends Fragment {
             public void onClick(View v) {
                 String answer4 = answerEt.getText().toString();
                 if (x/y==Integer.valueOf(answer4)){
-                    showToast(true, "TRUE");
+                    showToast(true, "");
                     ((DivisionActivity) mActivity).increaseTrueCounter();
                 }else {
-                    showToast(false, "FALSE");
+                    showToast(false, "");
                     vibrator.vibrate(800);
                 }
 
@@ -179,7 +179,7 @@ public class DivisionFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

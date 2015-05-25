@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Number Game</string>
+    <string name="app_name">Education Game</string>
 
     <string name="action_settings">Settings</string>
     <string-array name="number_limit">
@@ -16,19 +16,16 @@
     </string-array>
     <string name="title_activity_play">Answer the question</string>
     <string name="question_title">Answer the question:</string>
-    <string name="title_activity_main">Number game</string>
+    <string name="title_activity_main">Education game</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_math_">Math_Activity</string>
-    <string name="title_activity_number_learning">NumberLearningActivity</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_number_comparison">NumberComparisonActivity</string>
-    <string name="title_activity_guess_image">GuessImageActivity</string>
-    <string name="title_activity_sum">SumActivity</string>
-    <string name="title_activity_subtraction">SubtractionActivity</string>
-    <string name="title_activity_multiplication">MultiplicationActivity</string>
-    <string name="title_activity_division">DivisionActivity</string>
+    <string name="title_activity_math_">Math</string>
+    <string name="title_activity_number_learning">Number Learning</string>
+    <string name="title_activity_number_comparison">Number Comparison</string>
+    <string name="title_activity_guess_image">Guess name of image</string>
+    <string name="title_activity_sum">Sum</string>
+    <string name="title_activity_subtraction">Subtraction</string>
+    <string name="title_activity_multiplication">Multiplication</string>
+    <string name="title_activity_division">Division</string>
+    <string name="title_activity_finallesson">Final lesson</string>
 
 </resources>

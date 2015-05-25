@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sum"
-            android:textColor="#ff0000"
+            android:textColor="#ff850c08"
             android:textSize="19sp" />
 
         <CheckBox
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="65dp"
             android:text="Multiplication"
-            android:textColor="#ff0000"
+            android:textColor="#ff850c08"
             android:textSize="19sp" />
     </LinearLayout>
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="55dp"
         android:layout_toRightOf="@id/layout1"
         android:orientation="vertical">
 
@@ -48,16 +48,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Subtraction"
-            android:textColor="#ff0000"
+            android:textColor="#ff850c08"
             android:textSize="19sp" />
 
         <CheckBox
             android:id="@+id/divisionCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
+            android:layout_marginTop="65dp"
             android:text="Division"
-            android:textColor="#ff0000"
+            android:textColor="#ff850c08"
             android:textSize="19sp" />
     </LinearLayout>
 
@@ -75,7 +75,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose level: "
+            android:text="Choose limit: "
             android:textColor="#e61f44"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 

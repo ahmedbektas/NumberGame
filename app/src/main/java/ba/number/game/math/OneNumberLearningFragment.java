@@ -113,10 +113,10 @@ public class OneNumberLearningFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(questionNumber==Integer.valueOf(answerEt.getText().toString())){
-                     showToast(true, "TRUE");
+                     showToast(true, "");
                     ((OneNumberLearningActivity) mActivity).increaseTrueCounter();
                 }else {
-                    showToast(false, "FALSE");
+                    showToast(false, "");
                     vibrator.vibrate(800);// vibration for 800 milliseconds
                 }
                 if (OneNumberLearningActivity.questionCounter<10) {
@@ -175,7 +175,7 @@ public class OneNumberLearningFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 

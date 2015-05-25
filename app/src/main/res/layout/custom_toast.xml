@@ -5,8 +5,8 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/toastImage"
         android:src="@drawable/banana" />
 
@@ -16,5 +16,6 @@
         android:text="You are toast"
         android:layout_marginLeft="15dp"
         android:id="@+id/toastText"
-        android:textColor="#000"/>
+        android:textStyle="bold"
+        android:textColor="#ffe13c13"/>
 </LinearLayout>

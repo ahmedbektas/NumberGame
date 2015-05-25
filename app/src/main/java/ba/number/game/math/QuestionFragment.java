@@ -143,40 +143,40 @@ public class QuestionFragment extends Fragment {
                     case 1:
                         String answer = answerEt.getText().toString();
                         if (x+y==Integer.valueOf(answer)){
-                            showToast(true, "TRUE");
+                            showToast(true, "");
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            showToast(false, "FALSE");
+                            showToast(false, "");
                             vibrator.vibrate(800);// vibration for 800 milliseconds
                         }
                         break;
                     case 2:
                         String answer2 = answerEt.getText().toString();
                         if (x-y==Integer.valueOf(answer2)){
-                            showToast(true, "TRUE");
+                            showToast(true, "");
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            showToast(false, "FALSE");
+                            showToast(false, "");
                             vibrator.vibrate(800);
                         }
                         break;
                     case 3:
                         String answer3 = answerEt.getText().toString();
                         if (x*y==Integer.valueOf(answer3)){
-                            showToast(true, "TRUE");
+                            showToast(true, "");
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            showToast(false, "FALSE");
+                            showToast(false, "");
                             vibrator.vibrate(800);
                         }
                         break;
                     case 4:
                         String answer4 = answerEt.getText().toString();
                         if (x/y==Integer.valueOf(answer4)){
-                            showToast(true, "TRUE");
+                            showToast(true, "");
                             ((PlayActivity) mActivity).increaseTrueCounter();
                         }else {
-                            showToast(false, "FALSE");
+                            showToast(false, "");
                             vibrator.vibrate(800);
                         }
                         break;
@@ -271,7 +271,7 @@ public class QuestionFragment extends Fragment {
         toastText.setText(text);
         toastImage.setImageResource(isCorrect ? R.drawable.correct : R.drawable.incorrect);
 
-        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setGravity(Gravity.TOP | Gravity.RIGHT, 0, 0);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(toastView);
 
