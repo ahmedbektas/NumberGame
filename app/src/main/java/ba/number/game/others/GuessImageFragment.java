@@ -38,7 +38,6 @@ public class GuessImageFragment extends Fragment {
     RadioGroup radioGroup;
     Button nextBtn;
     String questionType = "";
-    int a, b, c;
     Random rn = new Random();
     //ovo je instanca, tj. objekat
     ActionBarActivity mActivity;
@@ -93,28 +92,26 @@ public class GuessImageFragment extends Fragment {
 
         vibrator = ((Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE));
 
-        toast = Toast.makeText(getActivity(), "", Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-
         ArrayList<String> answers = new ArrayList<>();
 
         switch (questionType){
             case "animals":
                 randomImage = GuessImageActivity.animalImages.get(rn.nextInt(5));
-                int res = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
+                int res = getResources().getIdentifier(randomImage, "drawable", mActivity.getPackageName());
                 imageView.setImageResource(res);
                 answers = generateFalseAnswersAnimals(randomImage);
                 break;
             case "plants":
                 randomImage = GuessImageActivity.plantImages.get(rn.nextInt(5));
-                int res2 = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
+                //da dinamicki uzimam sliku iz resource(drawable) foldera
+                int res2 = getResources().getIdentifier(randomImage, "drawable", mActivity.getPackageName());
                 imageView.setImageResource(res2);
 
                 answers = generateFalseAnswersPlants(randomImage);
                 break;
             case "vehicles":
                 randomImage = GuessImageActivity.vehicleImages.get(rn.nextInt(5));
-                int res3 = getResources().getIdentifier(randomImage, "drawable", getActivity().getPackageName());
+                int res3 = getResources().getIdentifier(randomImage, "drawable", mActivity.getPackageName());
                 imageView.setImageResource(res3);
 
                 answers = generateFalseAnswersVehicles(randomImage);
@@ -165,21 +162,23 @@ public class GuessImageFragment extends Fragment {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch(checkedId){
-                    case R.id.radioButton1:
-                        nextBtn.setEnabled(true);
-                        break;
-                    case R.id.radioButton2:
-                        nextBtn.setEnabled(true);
-                        break;
-                    case R.id.radioButton3:
-                        nextBtn.setEnabled(true);
-                        break;
-                    case R.id.radioButton4:
-                        nextBtn.setEnabled(true);
-                        break;
-
-                }
+                //ovo ispod je dodano nakon sto sam ovo komentirao ispod
+                nextBtn.setEnabled(true);
+//                switch(checkedId){
+//                    case R.id.radioButton1:
+//                        nextBtn.setEnabled(true);
+//                        break;
+//                    case R.id.radioButton2:
+//                        nextBtn.setEnabled(true);
+//                        break;
+//                    case R.id.radioButton3:
+//                        nextBtn.setEnabled(true);
+//                        break;
+//                    case R.id.radioButton4:
+//                        nextBtn.setEnabled(true);
+//                        break;
+//
+//                }
             }
         });
 
