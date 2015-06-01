@@ -16,7 +16,7 @@
     </string-array>
     <string name="title_activity_play">Answer the question</string>
     <string name="question_title">Answer the question:</string>
-    <string name="title_activity_main">Education game</string>
+    <string name="title_activity_main">Educational game</string>
 
     <string name="title_activity_math_">Math</string>
     <string name="title_activity_number_learning">Number Learning</string>
